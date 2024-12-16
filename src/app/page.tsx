@@ -4,7 +4,15 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Plane, Palette, Bitcoin, Cookie, Leaf, Car, Home, Smartphone, Shirt, Dog, Bird, Building2, Globe, DollarSign, Cat, Brain, Code, Film, ShoppingBasketIcon as Basketball, Backpack, Gamepad, Camera, Pencil, Rocket, Music, X, Headphones, Thermometer, Wind, AlertCircle, Heart, CloudRain, Flame, Circle, Mic, Eye, ScanFace, SkipBackIcon, Skull, Stethoscope } from 'lucide-react'
 import { cn } from "@/lib/utils"
-import { Topic } from '@/model/topic'
+
+
+interface Topic {
+  code: string,
+  icon: React.ComponentType
+  label: string
+  className?: string
+  description?: string
+}
 
 
 interface Diagnose {
