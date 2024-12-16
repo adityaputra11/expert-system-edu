@@ -63,136 +63,124 @@ export default function TopicButtons() {
     setDiagose(diagnosis)
   };
 
+
+  const diagnosisRules = [
+    {
+      codes: ["A1"],
+      diagnosis: "Sakit Kepala Biasa",
+      treatment: "Minum Paracetamol, istirahat yang cukup.",
+    },
+    {
+      codes: ["A2"],
+      diagnosis: "Demam Ringan",
+      treatment: "Minum banyak cairan, istirahat, dan konsumsi parasetamol jika suhu di atas 38°C.",
+    },
+    {
+      codes: ["A3"],
+      diagnosis: "Batuk Ringan",
+      treatment: "Minum air hangat, hindari makanan berminyak, dan konsumsi pereda batuk jika perlu.",
+    },
+    {
+      codes: ["A4"],
+      diagnosis: "Flu Ringan",
+      treatment: "Minum air hangat, hindari makanan berminyak, dan konsumsi obat pereda flu seperti dekongestan.",
+    },
+    {
+      codes: ["A5"],
+      diagnosis: "Nyeri Dada Ringan",
+      treatment: "Hindari aktivitas berat, duduklah dengan posisi tegak, dan konsultasikan ke dokter jika nyeri tidak berkurang.",
+    },
+    {
+      codes: ["A6"],
+      diagnosis: "Diare Biasa",
+      treatment: "Minum cairan elektrolit untuk mencegah dehidrasi, hindari makanan berat, dan makan pisang atau nasi putih.",
+    },
+    {
+      codes: ["A7"],
+      diagnosis: "Sakit Perut Biasa",
+      treatment: "Konsumsi makanan ringan, hindari makanan pedas atau berminyak, dan minum teh jahe hangat.",
+    },
+    {
+      codes: ["A8"],
+      diagnosis: "Nyeri Otot Kronis",
+      treatment: "Lakukan peregangan ringan, kompres hangat pada otot yang nyeri, dan konsumsi obat pereda nyeri jika diperlukan.",
+    },
+    {
+      codes: ["A9"],
+      diagnosis: "Suara Serak Ringan",
+      treatment: "Hindari berbicara terlalu banyak, konsumsi cairan hangat, dan hindari merokok atau paparan polusi.",
+    },
+    {
+      codes: ["A10"],
+      diagnosis: "Migrain",
+      treatment: "Hindari paparan cahaya terang dan suara bising, istirahat di ruangan gelap, dan konsumsi obat pereda nyeri seperti ibuprofen.",
+    },
+    {
+      codes: ["A11"],
+      diagnosis: "Ruam Kulit Biasa",
+      treatment: "Gunakan salep antihistamin atau hydrocortisone untuk mengurangi gatal dan iritasi. Hindari alergen jika diketahui.",
+    },
+    {
+      codes: ["A12"],
+      diagnosis: "Sesak Napas Ringan",
+      treatment: "Duduklah dengan posisi tegak, cobalah bernapas perlahan, dan konsultasikan ke dokter jika sesak tidak berkurang.",
+    },
+    {
+      codes: ["A13"],
+      diagnosis: "Insomnia Biasa",
+      treatment: "Terapkan rutinitas tidur yang teratur, hindari konsumsi kafein menjelang malam, dan cobalah teknik relaksasi sebelum tidur.",
+    },
+    {
+      codes: ["A1", "A2"],
+      diagnosis: "Demam dengan Sakit Kepala",
+      treatment: "Istirahat, minum banyak cairan, dan konsumsi parasetamol jika perlu.",
+    },
+    {
+      codes: ["A3", "A4"],
+      diagnosis: "Flu dengan Batuk",
+      treatment: "Minum air hangat, hindari makanan berminyak, dan konsumsi pereda flu seperti dekongestan.",
+    },
+    {
+      codes: ["A6", "A7"],
+      diagnosis: "Diare dan Sakit Perut",
+      treatment: "Minum cairan rehidrasi oral untuk mencegah dehidrasi, hindari makanan berat, dan konsultasikan jika gejala berlanjut.",
+    },
+    {
+      codes: ["A1", "A2", "A3", "A4"],
+      diagnosis: "Influenza",
+      treatment: "Istirahat yang cukup, konsumsi cairan hangat, hindari aktivitas berat, dan gunakan obat pereda demam seperti paracetamol jika perlu.",
+    },
+    {
+      codes: ["A5", "A12"],
+      diagnosis: "Nyeri Dada dan Sesak Napas",
+      treatment: "Segera konsultasikan ke dokter untuk pemeriksaan lebih lanjut.",
+    },
+    {
+      codes: ["A9", "A13"],
+      diagnosis: "Laringitis dengan Insomnia",
+      treatment: "Hindari berbicara terlalu banyak, konsumsi cairan hangat, dan cobalah teknik relaksasi sebelum tidur.",
+    },
+    {
+      codes: ["A8", "A10"],
+      diagnosis: "Migrain dengan Nyeri Otot",
+      treatment: "Istirahat di tempat yang tenang, hindari cahaya terang, dan lakukan peregangan ringan.",
+    },
+  ];
+
   const getDiagnosis = (selectedCodes: string[]): Diagnose => {
-    if (selectedCodes.length === 1) {
-      switch (selectedCodes[0]) {
-        case "A1":
-          return {
-            diagnosis: "Sakit Kepala Biasa",
-            treatment: "Minum Paracetamol, istirahat yang cukup.",
-          };
-        case "A2":
-          return {
-            diagnosis: "Demam Ringan",
-            treatment: "Minum banyak cairan, istirahat, dan konsumsi parasetamol jika suhu di atas 38°C.",
-          };
-        case "A3":
-          return {
-            diagnosis: "Batuk Ringan",
-            treatment: "Minum air hangat, hindari makanan berminyak, dan konsumsi pereda batuk jika perlu.",
-          };
-        case "A4":
-          return {
-            diagnosis: "Flu Ringan",
-            treatment: "Minum air hangat, hindari makanan berminyak, dan konsumsi pereda batuk jika perlu.",
-          };
-        case "A7":
-          return {
-            diagnosis: "Sakit Perut Biasa",
-            treatment: "Konsumsi makanan ringan, hindari makanan pedas, dan minum teh jahe hangat.",
-          };
-          case "A13":
-          return {
-            diagnosis: "Insomnia Biasa",
-            treatment: "Terapkan rutinitas tidur yang teratur, hindari konsumsi kafein menjelang malam, dan cobalah teknik relaksasi sebelum tidur.",
-          };
-        default:
-          break;
-      }
-    }
-    // Kasus untuk kombinasi dua gejala
-  if (selectedCodes.length === 2) {
-    if (selectedCodes.includes("A1") && selectedCodes.includes("A2")) {
+    const match = diagnosisRules.find(
+      (rule) =>
+        rule.codes.length === selectedCodes.length && // Panjang harus sama
+        rule.codes.every((code) => selectedCodes.includes(code)) // Semua kode dalam aturan ada di selectedCodes
+    );
+
+    if (match) {
       return {
-        diagnosis: "Demam dengan Sakit Kepala",
-        treatment: "Istirahat, minum banyak cairan, dan konsumsi parasetamol jika perlu.",
+        diagnosis: match.diagnosis,
+        treatment: match.treatment,
       };
     }
-    if (selectedCodes.includes("A3") && selectedCodes.includes("A4")) {
-      return {
-        diagnosis: "Flu dengan Batuk",
-        treatment: "Minum air hangat, hindari makanan berminyak, dan konsumsi pereda flu seperti dekongestan.",
-      };
-    }
-    if (selectedCodes.includes("A5") && selectedCodes.includes("A12")) {
-      return {
-        diagnosis: "Nyeri Dada dan Sesak Napas",
-        treatment: "Segera konsultasikan ke dokter untuk pemeriksaan lebih lanjut.",
-      };
-    }
-    if (selectedCodes.includes("A6") && selectedCodes.includes("A7")) {
-      return {
-        diagnosis: "Diare dan Sakit Perut",
-        treatment: "Minum cairan rehidrasi oral untuk mencegah dehidrasi, hindari makanan berat, dan konsultasikan jika gejala berlanjut.",
-      };
-    }
-    if (selectedCodes.includes("A9") && selectedCodes.includes("A13")) {
-      return {
-        diagnosis: "Laringitis dengan Insomnia",
-        treatment: "Hindari berbicara terlalu banyak, konsumsi cairan hangat, dan cobalah teknik relaksasi sebelum tidur.",
-      };
-    }
-    if (selectedCodes.includes("A8") && selectedCodes.includes("A10")) {
-      return {
-        diagnosis: "Migrain dengan Nyeri Otot",
-        treatment: "Istirahat di tempat yang tenang, hindari cahaya terang, dan lakukan peregangan ringan.",
-      };
-    }
-  }
-    if (selectedCodes.includes("A1") && selectedCodes.includes("A2") && selectedCodes.includes("A3") && selectedCodes.includes("A4")) {
-      return {
-        diagnosis: "Influenza",
-        treatment: "Istirahat yang cukup, konsumsi cairan hangat, hindari aktivitas berat, dan gunakan obat pereda demam seperti paracetamol jika perlu.",
-      };
-    }
-    if (selectedCodes.includes("A10")) {
-      return {
-        diagnosis: "Migrain",
-        treatment: "Hindari paparan cahaya terang dan suara bising, istirahat di ruangan gelap, dan konsumsi obat pereda nyeri seperti ibuprofen.",
-      };
-    }
-    if (selectedCodes.includes("A5") && selectedCodes.includes("A12")) {
-      return {
-        diagnosis: "Masalah Jantung",
-        treatment: "Segera konsultasikan ke dokter atau pergi ke unit gawat darurat jika gejala terus berlanjut atau memburuk.",
-      };
-    }
-    if (selectedCodes.includes("A11")) {
-      return {
-        diagnosis: "Infeksi Kulit/Alergi",
-        treatment: "Gunakan salep antihistamin atau hydrocortisone untuk mengurangi gatal dan iritasi. Hindari alergen jika diketahui.",
-      };
-    }
-    if (selectedCodes.includes("A7")) {
-      return {
-        diagnosis: "Gastritis/Maag",
-        treatment: "Konsumsi makanan ringan, hindari makanan pedas atau berminyak, dan gunakan antasida jika perlu.",
-      };
-    }
-    if (selectedCodes.includes("A13")) {
-      return {
-        diagnosis: "Insomnia",
-        treatment: "Terapkan rutinitas tidur yang teratur, hindari konsumsi kafein menjelang malam, dan cobalah teknik relaksasi sebelum tidur.",
-      };
-    }
-    if (selectedCodes.includes("A9")) {
-      return {
-        diagnosis: "Laringitis",
-        treatment: "Hindari berbicara terlalu banyak, konsumsi cairan hangat, dan hindari merokok atau paparan polusi.",
-      };
-    }
-    if (selectedCodes.includes("A8")) {
-      return {
-        diagnosis: "Nyeri Otot Kronis",
-        treatment: "Lakukan peregangan ringan, kompres hangat pada otot yang nyeri, dan konsumsi obat pereda nyeri jika diperlukan.",
-      };
-    }
-    if (selectedCodes.includes("A2") && selectedCodes.includes("A6") && selectedCodes.includes("A7")) {
-      return {
-        diagnosis: "Gastroenteritis",
-        treatment: "Konsumsi cairan elektrolit untuk mencegah dehidrasi, hindari makanan berat, dan konsultasikan ke dokter jika gejala berlanjut.",
-      };
-    }
+
     return {
       diagnosis: "Tidak dapat menentukan diagnosis",
       treatment: "Silakan konsultasikan dengan dokter untuk pemeriksaan lebih lanjut.",
@@ -202,9 +190,9 @@ export default function TopicButtons() {
   return (
     <div className="max-w-7xl mx-auto p-4">
 
-      <div className=" relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10">
+      <div className="pt-10 relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10">
         <h1 className="text-4xl font-bold text-center">
-           <span className="text-blue-600">Sistem Pakar Medis</span> Diagnosa Cerdas
+          <span className="text-blue-600">Sistem Pakar Medis</span> Diagnosa Cerdas
         </h1>
       </div>
 
