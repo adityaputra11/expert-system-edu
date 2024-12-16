@@ -91,10 +91,54 @@ export default function TopicButtons() {
             diagnosis: "Sakit Perut Biasa",
             treatment: "Konsumsi makanan ringan, hindari makanan pedas, dan minum teh jahe hangat.",
           };
+          case "A13":
+          return {
+            diagnosis: "Insomnia Biasa",
+            treatment: "Terapkan rutinitas tidur yang teratur, hindari konsumsi kafein menjelang malam, dan cobalah teknik relaksasi sebelum tidur.",
+          };
         default:
           break;
       }
     }
+    // Kasus untuk kombinasi dua gejala
+  if (selectedCodes.length === 2) {
+    if (selectedCodes.includes("A1") && selectedCodes.includes("A2")) {
+      return {
+        diagnosis: "Demam dengan Sakit Kepala",
+        treatment: "Istirahat, minum banyak cairan, dan konsumsi parasetamol jika perlu.",
+      };
+    }
+    if (selectedCodes.includes("A3") && selectedCodes.includes("A4")) {
+      return {
+        diagnosis: "Flu dengan Batuk",
+        treatment: "Minum air hangat, hindari makanan berminyak, dan konsumsi pereda flu seperti dekongestan.",
+      };
+    }
+    if (selectedCodes.includes("A5") && selectedCodes.includes("A12")) {
+      return {
+        diagnosis: "Nyeri Dada dan Sesak Napas",
+        treatment: "Segera konsultasikan ke dokter untuk pemeriksaan lebih lanjut.",
+      };
+    }
+    if (selectedCodes.includes("A6") && selectedCodes.includes("A7")) {
+      return {
+        diagnosis: "Diare dan Sakit Perut",
+        treatment: "Minum cairan rehidrasi oral untuk mencegah dehidrasi, hindari makanan berat, dan konsultasikan jika gejala berlanjut.",
+      };
+    }
+    if (selectedCodes.includes("A9") && selectedCodes.includes("A13")) {
+      return {
+        diagnosis: "Laringitis dengan Insomnia",
+        treatment: "Hindari berbicara terlalu banyak, konsumsi cairan hangat, dan cobalah teknik relaksasi sebelum tidur.",
+      };
+    }
+    if (selectedCodes.includes("A8") && selectedCodes.includes("A10")) {
+      return {
+        diagnosis: "Migrain dengan Nyeri Otot",
+        treatment: "Istirahat di tempat yang tenang, hindari cahaya terang, dan lakukan peregangan ringan.",
+      };
+    }
+  }
     if (selectedCodes.includes("A1") && selectedCodes.includes("A2") && selectedCodes.includes("A3") && selectedCodes.includes("A4")) {
       return {
         diagnosis: "Influenza",
