@@ -1,9 +1,9 @@
 'use client'
 
-import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import { Plane, Palette, Bitcoin, Cookie, Leaf, Car, Home, Smartphone, Shirt, Dog, Bird, Building2, Globe, DollarSign, Cat, Brain, Code, Film, ShoppingBasketIcon as Basketball, Backpack, Gamepad, Camera, Pencil, Rocket, Music, X, Headphones, Thermometer, Wind, AlertCircle, Heart, CloudRain, Flame, Circle, Mic, Eye, ScanFace, SkipBackIcon, Skull, Stethoscope } from 'lucide-react'
 import { cn } from "@/lib/utils"
+import { AnimatePresence, motion } from 'framer-motion'
+import { AlertCircle, Circle, CloudRain, Eye, Flame, Headphones, Heart, Mic, Music, ScanFace, Skull, Stethoscope, Thermometer, Wind, X } from 'lucide-react'
+import { useState } from 'react'
 
 
 interface Topic {
@@ -20,7 +20,7 @@ interface Diagnose {
   treatment: String
 }
 
-export const topics: Topic[] = [
+const topics: Topic[] = [
   { code: 'A1', icon: Headphones, label: "Sakit Kepala", className: "col-span-1 sm:col-span-2", description: "rasa sakit atau tekanan yang terjadi di kepala, kulit kepala, atau leher. Sakit kepala bisa terasa berdenyut, bergelombang, ditekan, atau tajam seperti ditusuk." },
   { code: 'A2', icon: Thermometer, label: "Demam", className: "col-span-1", description: "merupakan kondisi terjadinya peningkatan suhu tubuh di atas 38 derajat Celsius. Umumnya, demam merupakan respons tubuh atau gejala terhadap penyakit." },
   { code: 'A3', icon: Wind, label: "Batuk", className: "col-span-1 sm:col-span-2", description: "adalah respons alami tubuh untuk mengeluarkan benda asing, seperti kuman, virus, debu, atau zat iritatif, dari dalam saluran pernapasan. Meski begitu, batuk juga sering kali menandakan adanya gangguan kesehatan tertentu, mulai dari ISPA, alergi, asma, hingga kanker paru-paru." },
